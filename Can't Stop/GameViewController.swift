@@ -11,7 +11,13 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
-
+    @IBOutlet weak var mainImageView: UIImageView!
+    
+    @IBOutlet weak var farLeftDiceImageView: UIImageView!
+    @IBOutlet weak var centerRightDiceImageView: UIImageView!
+    @IBOutlet weak var bottomLeftDiceImageView: UIImageView!
+    @IBOutlet weak var bottomRightDiceImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,16 +38,26 @@ class GameViewController: UIViewController {
         }
     }
 
+    @IBAction func rollButtonTapped(_ sender: UIButton) {
+        let numberOne = arc4random_uniform(6) + 1
+        let numberTwo = arc4random_uniform(6) + 1
+        let numberThree = arc4random_uniform(6) + 1
+        let numberFour = arc4random_uniform(6) + 1
+        farLeftDiceImageView.image = UIImage(named: "Dice\(numberOne)")
+        centerRightDiceImageView.image = UIImage(named: "Dice\(numberTwo)")
+        bottomLeftDiceImageView.image = UIImage(named: "Dice\(numberThree)")
+        bottomRightDiceImageView.image = UIImage(named: "Dice\(numberFour)")
+    }
+    
+    @IBAction func stopButtonTapped(_ sender: UIButton) {
+    }
+    
     override var shouldAutorotate: Bool {
         return true
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }
+        return UIInterfaceOrientationMask.portrait
     }
 
     override func didReceiveMemoryWarning() {
