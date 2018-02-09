@@ -27,7 +27,7 @@ class CantStopPlayer: Player {
     // Where tiles are for each column from previous moves
     var tileLocations = Array(repeating: 0, count: numberBoardColumns)
     // Total captures columns (need 3 to win)
-    var score = 0
+    var playerScore = 0
     
     override init(name:String, id:Int) {
         super.init(name: name, id: id)
@@ -36,10 +36,17 @@ class CantStopPlayer: Player {
     /**
      Updates the can't stop players information after a turn
      
-     - Parameter newLocations: A 1 x 11 Int array that represents the new locations of the board tiles
+     - Parameter newLocations: A 11 Int array that represents the new locations of the board tiles
      
-     - Throws: `MyError.InvalidSizedArray` when
- 
-     */
-    func updateAfterTurn(newLocations: [Int]) {}
+     - Throws: `PlayerError.invalidSizeArray` if newLocations is not of size 11
+      */
+    func updateAfterTurn(newLocations: [Int]) throws {
+        guard newLocations.count == numberBoardColumns else { throw PlayerError.invalidSizeArray(sizeNeeded: numberBoardColumns)}
+        tileLocations = newLocations
+        for col in 0...tileLocations.count {
+            if (numRowsInGameColumn(col: col) == tileLocations[col]) {
+                playerScore += 1
+            }
+        }
+    }
 }

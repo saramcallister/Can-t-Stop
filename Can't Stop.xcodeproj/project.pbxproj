@@ -7,8 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		633CA68F202A4D970045DD92 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633CA68E202A4D970045DD92 /* Game.swift */; };
+		633CA692202A61290045DD92 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633CA690202A61290045DD92 /* MenuViewController.swift */; };
 		637F4D9E202982F200FB4435 /* GameBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637F4D9D202982F200FB4435 /* GameBoard.swift */; };
 		637F4DA02029838C00FB4435 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637F4D9F2029838C00FB4435 /* Player.swift */; };
+		637F4DAB20299B8C00FB4435 /* Can_t_StopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637F4DAA20299B8C00FB4435 /* Can_t_StopTests.swift */; };
+		637F4DB320299BB400FB4435 /* GameBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637F4DB220299BB400FB4435 /* GameBoardTests.swift */; };
+		637F4DB420299BCE00FB4435 /* PlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637F4DA120299A8A00FB4435 /* PlayerTests.swift */; };
+		637F4DBA2029A0D500FB4435 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EB851C1FF0C20300E12B66 /* AppDelegate.swift */; };
+		637F4DBB2029A0DC00FB4435 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637F4D9F2029838C00FB4435 /* Player.swift */; };
 		63EB851D1FF0C20300E12B66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EB851C1FF0C20300E12B66 /* AppDelegate.swift */; };
 		63EB851F1FF0C20300E12B66 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 63EB851E1FF0C20300E12B66 /* GameScene.sks */; };
 		63EB85211FF0C20300E12B66 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 63EB85201FF0C20300E12B66 /* Actions.sks */; };
@@ -19,9 +26,38 @@
 		63EB852D1FF0C20300E12B66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63EB852B1FF0C20300E12B66 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		637F4DA320299ABB00FB4435 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "";
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXContainerItemProxy section */
+		637F4DAD20299B8C00FB4435 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63EB85111FF0C20200E12B66 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63EB85181FF0C20200E12B66;
+			remoteInfo = "Can't Stop";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		633CA68E202A4D970045DD92 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		633CA690202A61290045DD92 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		637F4D9D202982F200FB4435 /* GameBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoard.swift; sourceTree = "<group>"; };
 		637F4D9F2029838C00FB4435 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		637F4DA120299A8A00FB4435 /* PlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
+		637F4DA820299B8C00FB4435 /* Can't StopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Can't StopTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		637F4DAA20299B8C00FB4435 /* Can_t_StopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Can_t_StopTests.swift; sourceTree = "<group>"; };
+		637F4DAC20299B8C00FB4435 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		637F4DB220299BB400FB4435 /* GameBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoardTests.swift; sourceTree = "<group>"; };
 		63EB85191FF0C20300E12B66 /* Can't Stop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Can't Stop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63EB851C1FF0C20300E12B66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63EB851E1FF0C20300E12B66 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -35,6 +71,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		637F4DA520299B8C00FB4435 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63EB85161FF0C20200E12B66 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -45,10 +88,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		637F4DA920299B8C00FB4435 /* Can't StopTests */ = {
+			isa = PBXGroup;
+			children = (
+				637F4DA120299A8A00FB4435 /* PlayerTests.swift */,
+				637F4DAA20299B8C00FB4435 /* Can_t_StopTests.swift */,
+				637F4DAC20299B8C00FB4435 /* Info.plist */,
+				637F4DB220299BB400FB4435 /* GameBoardTests.swift */,
+			);
+			path = "Can't StopTests";
+			sourceTree = "<group>";
+		};
 		63EB85101FF0C20200E12B66 = {
 			isa = PBXGroup;
 			children = (
 				63EB851B1FF0C20300E12B66 /* Can't Stop */,
+				637F4DA920299B8C00FB4435 /* Can't StopTests */,
 				63EB851A1FF0C20300E12B66 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				63EB85191FF0C20300E12B66 /* Can't Stop.app */,
+				637F4DA820299B8C00FB4435 /* Can't StopTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -72,6 +128,8 @@
 				637F4D9D202982F200FB4435 /* GameBoard.swift */,
 				637F4D9F2029838C00FB4435 /* Player.swift */,
 				63EB85261FF0C20300E12B66 /* Main.storyboard */,
+				633CA690202A61290045DD92 /* MenuViewController.swift */,
+				633CA68E202A4D970045DD92 /* Game.swift */,
 				63EB85291FF0C20300E12B66 /* Assets.xcassets */,
 				63EB852B1FF0C20300E12B66 /* LaunchScreen.storyboard */,
 				63EB852E1FF0C20300E12B66 /* Info.plist */,
@@ -82,6 +140,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		637F4DA720299B8C00FB4435 /* Can't StopTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 637F4DAF20299B8C00FB4435 /* Build configuration list for PBXNativeTarget "Can't StopTests" */;
+			buildPhases = (
+				637F4DA420299B8C00FB4435 /* Sources */,
+				637F4DA520299B8C00FB4435 /* Frameworks */,
+				637F4DA620299B8C00FB4435 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				637F4DAE20299B8C00FB4435 /* PBXTargetDependency */,
+			);
+			name = "Can't StopTests";
+			productName = "Can't StopTests";
+			productReference = 637F4DA820299B8C00FB4435 /* Can't StopTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		63EB85181FF0C20200E12B66 /* Can't Stop */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63EB85311FF0C20300E12B66 /* Build configuration list for PBXNativeTarget "Can't Stop" */;
@@ -91,6 +167,7 @@
 				63EB85171FF0C20200E12B66 /* Resources */,
 			);
 			buildRules = (
+				637F4DA320299ABB00FB4435 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -109,6 +186,11 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Sara McAllister";
 				TargetAttributes = {
+					637F4DA720299B8C00FB4435 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 63EB85181FF0C20200E12B66;
+					};
 					63EB85181FF0C20200E12B66 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -129,11 +211,19 @@
 			projectRoot = "";
 			targets = (
 				63EB85181FF0C20200E12B66 /* Can't Stop */,
+				637F4DA720299B8C00FB4435 /* Can't StopTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		637F4DA620299B8C00FB4435 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63EB85171FF0C20200E12B66 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -149,12 +239,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		637F4DA420299B8C00FB4435 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				637F4DBA2029A0D500FB4435 /* AppDelegate.swift in Sources */,
+				637F4DB320299BB400FB4435 /* GameBoardTests.swift in Sources */,
+				637F4DB420299BCE00FB4435 /* PlayerTests.swift in Sources */,
+				637F4DBB2029A0DC00FB4435 /* Player.swift in Sources */,
+				637F4DAB20299B8C00FB4435 /* Can_t_StopTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63EB85151FF0C20200E12B66 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				637F4D9E202982F200FB4435 /* GameBoard.swift in Sources */,
+				633CA68F202A4D970045DD92 /* Game.swift in Sources */,
 				63EB85231FF0C20300E12B66 /* GameScene.swift in Sources */,
+				633CA692202A61290045DD92 /* MenuViewController.swift in Sources */,
 				63EB85251FF0C20300E12B66 /* GameViewController.swift in Sources */,
 				637F4DA02029838C00FB4435 /* Player.swift in Sources */,
 				63EB851D1FF0C20300E12B66 /* AppDelegate.swift in Sources */,
@@ -162,6 +266,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		637F4DAE20299B8C00FB4435 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63EB85181FF0C20200E12B66 /* Can't Stop */;
+			targetProxy = 637F4DAD20299B8C00FB4435 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		63EB85261FF0C20300E12B66 /* Main.storyboard */ = {
@@ -183,6 +295,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		637F4DB020299B8C00FB4435 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Can't StopTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Can-t-StopTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Can't Stop.app/Can't Stop";
+			};
+			name = Debug;
+		};
+		637F4DB120299B8C00FB4435 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Can't StopTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Can-t-StopTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Can't Stop.app/Can't Stop";
+			};
+			name = Release;
+		};
 		63EB852F1FF0C20300E12B66 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -321,6 +463,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		637F4DAF20299B8C00FB4435 /* Build configuration list for PBXNativeTarget "Can't StopTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				637F4DB020299B8C00FB4435 /* Debug */,
+				637F4DB120299B8C00FB4435 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		63EB85141FF0C20200E12B66 /* Build configuration list for PBXProject "Can't Stop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
