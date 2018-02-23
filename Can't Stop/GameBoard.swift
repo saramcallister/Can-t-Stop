@@ -43,8 +43,16 @@ func numRowsInGameColumn(col: Int) -> Int{
 
 class GameBoard {
     var claimedColumns = Array(repeating: 0, count: 11)
+    var players: [CantStopPlayer] = []
+    var nextPlayerNum = 0
     
-    func claimColumn(col: Int, player: CantStopPlayer) {
+    init(numberPlayers: Int) {
+        for i in stride(from: 0, to: numberPlayers, by: 1) {
+            players.append(CantStopPlayer(name: "", id: i))
+        }
+    }
+    
+    private func claimColumn(col: Int, player: CantStopPlayer) {
         claimedColumns[col] = player.id
     }
 

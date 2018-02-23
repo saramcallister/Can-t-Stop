@@ -23,9 +23,10 @@ class GameViewController: UIViewController {
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+            if let scene = GameScene(fileNamed: "GameScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
+                scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
                 
                 // Present the scene
                 view.presentScene(scene)
@@ -49,8 +50,6 @@ class GameViewController: UIViewController {
         bottomRightDiceImageView.image = UIImage(named: "Dice\(numberFour)")
     }
     
-    @IBAction func stopButtonTapped(_ sender: UIButton) {
-    }
     
     override var shouldAutorotate: Bool {
         return true
