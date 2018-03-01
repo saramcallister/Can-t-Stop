@@ -74,10 +74,12 @@ class MenuScene: SKScene {
                 else {numberPlayers = 1}
                 
                 // create scene and size it correctly
-                let scene = BoardScene(size: self.size, numPlayers: numberPlayers)
+                guard let scene = BoardScene(fileNamed: "BoardScene") else {
+                    fatalError("Could not create BoardScene.")
+                }
+                scene.gameBoard = GameBoard(numberPlayers: numberPlayers)
                 scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
                 scene.scaleMode = .aspectFill
-                if onePlayer == node {scene.playerNum = 1}
                 self.view?.presentScene(scene, transition: transition)
             }
             
