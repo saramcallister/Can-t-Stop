@@ -16,6 +16,7 @@ class BoardScene: SKScene {
     var chooseButton: SKSpriteNode?
     var endTurnButton: SKSpriteNode?
     var playerLabel: SKLabelNode?
+    var tileLocations: SKSpriteNode?
     var selection = true
     
     //Variables to keep track of dice position
@@ -63,6 +64,9 @@ class BoardScene: SKScene {
         
         rollButton!.isHidden = true
         endTurnButton!.isHidden = true
+        
+        // Add tile nodes
+        tileLocations = (self.childNode(withName: "pieceLocations") as! SKSpriteNode)
         
         // Start with random dice faces
         rollDice()
