@@ -49,4 +49,19 @@ class CantStopPlayer: Player {
             }
         }
     }
+    
+    /**
+     Returns current location of player's piece in a specific column
+     
+     - Parameter column: One of 11 columns
+    */
+    func currentTileLocation(column: Int) -> Int {
+        return tileLocations[column]
+    }
+    
+    func updateFromMarkers(markers: [Int: Int]) {
+        for (loc, number) in markers {
+            tileLocations[loc] = number
+        }
+    }
 }

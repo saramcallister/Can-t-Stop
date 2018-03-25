@@ -45,7 +45,8 @@ class GameBoard {
     var claimedColumns = Array(repeating: 0, count: 11)
     var players: [CantStopPlayer] = []
     var numPlayers: Int
-    var nextPlayerNum = 0
+    var currentPlayer = 0
+    var markers = [Int: Int]()
     
     init(numberPlayers: Int) {
         self.numPlayers = numberPlayers
@@ -54,8 +55,40 @@ class GameBoard {
         }
     }
     
-    private func claimColumn(col: Int, player: CantStopPlayer) {
+    func claimColumn(col: Int, player: CantStopPlayer) {
         claimedColumns[col] = player.id
+    }
+    
+    func getCurrentPlayer() -> Int {
+        return currentPlayer
+    }
+    
+    func nextPlayer() {
+        currentPlayer = (currentPlayer + 1) % numPlayers
+    }
+    
+    /**
+     Move up pieces with the firstSum's corresponding piece taking precedence
+     
+     @param diceSum is an integer representing the sum to increase
+     
+     @return Returns false if sum cannont be added to the player's score without using more than 3 markers
+     */
+    func moveUpPiece(diceSum: Int) -> Bool {
+        if (markers[diceSum] == nil) {
+            if markers.count >= 3 {
+                return false
+            } else {
+                markers[diceSum] = players[currentPlayer].currentTileLocation(column: diceSum - 2)
+                return true
+            }
+        }
+        markers[diceSum]! += 1
+        return true
+    }
+    
+    func saveMarkers() {
+        players[currentPlayer].updateFromMarkers(markers: markers)
     }
 
 }
