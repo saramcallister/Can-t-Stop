@@ -16,7 +16,7 @@ class BoardScene: SKScene {
     var chooseButton: SKSpriteNode?
     var endTurnButton: SKSpriteNode?
     var playerLabel: SKLabelNode?
-    var tileLocations: SKSpriteNode?
+    var pieceLocations: SKNode?
     var selection = true
     
     //Variables to keep track of dice position
@@ -53,6 +53,7 @@ class BoardScene: SKScene {
         // Set font and size of text labels
         playerLabel = (self.childNode(withName: "player_label") as! SKLabelNode)
         playerLabel!.text = "Player: \(gameBoard!.getCurrentPlayer() + 1)"
+        playerLabel!.color = idToColor(id: gameBoard!.getCurrentPlayer())
         
         // Keep track of other necessary nodes
         rollButton = (self.childNode(withName: "rollButton") as! SKSpriteNode)
@@ -66,7 +67,7 @@ class BoardScene: SKScene {
         endTurnButton!.isHidden = true
         
         // Add tile nodes
-        tileLocations = (self.childNode(withName: "pieceLocations") as! SKSpriteNode)
+        pieceLocations = self.childNode(withName: "pieceLocations")
         
         // Start with random dice faces
         rollDice()
@@ -91,11 +92,33 @@ class BoardScene: SKScene {
         }
     }
     
+    private func updateAllTiles() {
+        for col in 0 ..< numberBoardColumns {
+            let numRows = numRowsInGameColumn(col: col)
+            var playerLocs = [Int](repeating: 0, count: gameBoard!.numPlayers)
+            for player in 0 ..< gameBoard!.numPlayers {
+                playerLocs[player] = gameBoard!.playerTileLocation(player: player, column: col)
+            }
+            for loc in 1 ..< (numRows + 1) {
+                let tileNode = pieceLocations!.children[col].children[loc - 1] as! SKSpriteNode
+                if (playerLocs.contains(loc)){
+                    tileNode.color = idToColor(id: playerLocs.index(of: loc)!)
+                } else {
+                    tileNode.color = UIColor.clear
+                }
+            }
+        }
+    }
+    
     private func nextPlayer(saveMarkers: Bool) {
         print("Moving to next player")
         if saveMarkers {gameBoard!.saveMarkers()}
+        updateAllTiles()
+        
         gameBoard!.nextPlayer()
         playerLabel!.text = "Player: \(gameBoard!.getCurrentPlayer() + 1)"
+        playerLabel!.color = idToColor(id: gameBoard!.getCurrentPlayer())
+        
         
         for die in dice {
             die.color = .white
@@ -107,9 +130,14 @@ class BoardScene: SKScene {
         chooseButton?.isHidden = false
         rollButton?.isHidden = true
         endTurnButton?.isHidden = true
+        
+        
     }
     
     private func clickedChooseButton() {
+        if (selectedDice.count != 2) {
+            return
+        }
         let sum1: Int = diceCurrentlyShowing[selectedDice[0]] + diceCurrentlyShowing[selectedDice[1]]
         let sum2: Int = diceCurrentlyShowing.reduce(0, { x, y in x + y})  - sum1
         let return1 = gameBoard!.moveUpPiece(diceSum: sum1)

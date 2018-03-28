@@ -79,7 +79,7 @@ class GameBoard {
             if markers.count >= 3 {
                 return false
             } else {
-                markers[diceSum] = players[currentPlayer].currentTileLocation(column: diceSum - 2)
+                markers[diceSum] = players[currentPlayer].currentTileLocation(column: diceSum - 2) + 1
                 return true
             }
         }
@@ -89,6 +89,10 @@ class GameBoard {
     
     func saveMarkers() {
         players[currentPlayer].updateFromMarkers(markers: markers)
+    }
+    
+    func playerTileLocation(player: Int, column: Int) -> Int {
+        return players[player].currentTileLocation(column: column)
     }
 
 }

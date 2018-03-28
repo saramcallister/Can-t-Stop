@@ -7,9 +7,33 @@
 //
 
 import Foundation
+import UIKit
 
 enum PlayerError: Error {
     case invalidSizeArray(sizeNeeded: Int)
+}
+
+/**
+ Finds the color corresponding to id number
+ 
+ - Parameter id: integer representing the id number
+ 
+ - Returns: UIColor
+
+ */
+func idToColor(id: Int) -> UIColor {
+    switch id {
+    case 0:
+        return UIColor.blue
+    case 1:
+        return UIColor.green
+    case 2:
+        return UIColor.yellow
+    case 3, 7:
+        return UIColor.orange
+    default:
+        return UIColor.clear
+    }
 }
 
 // generic player class that is not specific to game
@@ -28,8 +52,10 @@ class CantStopPlayer: Player {
     var tileLocations = Array(repeating: 0, count: numberBoardColumns)
     // Total captures columns (need 3 to win)
     var playerScore = 0
+    var color: UIColor
     
     override init(name:String, id:Int) {
+        self.color = idToColor(id: id)
         super.init(name: name, id: id)
     }
     
@@ -61,7 +87,7 @@ class CantStopPlayer: Player {
     
     func updateFromMarkers(markers: [Int: Int]) {
         for (loc, number) in markers {
-            tileLocations[loc] = number
+            tileLocations[loc-1] = number
         }
     }
 }
