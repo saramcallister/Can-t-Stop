@@ -11,7 +11,10 @@ import UIKit
 
 enum PlayerError: Error {
     case invalidSizeArray(sizeNeeded: Int)
+    case invalidColumn()
 }
+
+let numberBoardColumns = 11
 
 /**
  Finds the color corresponding to id number
@@ -36,11 +39,38 @@ func idToColor(id: Int) -> UIColor {
     }
 }
 
+/**
+ Find number of rows given a column nubmer from 0 to 10, (0 corresponds to the displayed 2 column)
+ 
+ - Parameter col: integer representing the desired column number
+ 
+ - Returns: number of rows in column including final square
+ */
+func numRowsInGameColumn(col: Int) -> Int{
+    switch col {
+    case 0, 10:
+        return 3
+    case 1, 9:
+        return 5
+    case 2, 8:
+        return 7
+    case 3, 7:
+        return 9
+    case 4, 6:
+        return 11
+    case 5:
+        return 13
+    default:
+        return 0
+    }
+}
+
 // generic player class that is not specific to game
 class Player {
     // need to store information about individual (eg. id, name)
     var name: String
     var id: Int
+    
     init(name:String, id:Int) {
         self.name = name
         self.id = id
@@ -69,7 +99,7 @@ class CantStopPlayer: Player {
     func updateAfterTurn(newLocations: [Int]) throws {
         guard newLocations.count == numberBoardColumns else { throw PlayerError.invalidSizeArray(sizeNeeded: numberBoardColumns)}
         tileLocations = newLocations
-        for col in 0...tileLocations.count {
+        for col in 0 ..< tileLocations.count {
             if (numRowsInGameColumn(col: col) == tileLocations[col]) {
                 playerScore += 1
             }
@@ -79,15 +109,16 @@ class CantStopPlayer: Player {
     /**
      Returns current location of player's piece in a specific column
      
-     - Parameter column: One of 11 columns
+     - Parameter column: One of 11 columns (numbered how they are on the board)
     */
     func currentTileLocation(column: Int) -> Int {
-        return tileLocations[column]
+        return tileLocations[column-2]
     }
     
-    func updateFromMarkers(markers: [Int: Int]) {
+    func updateFromMarkers(markers: [Int: Int]) throws {
         for (loc, number) in markers {
-            tileLocations[loc-1] = number
+            guard (loc >= 2 && loc <= 12 ) else {throw PlayerError.invalidColumn()}
+            tileLocations[loc-2] = number
         }
     }
 }
