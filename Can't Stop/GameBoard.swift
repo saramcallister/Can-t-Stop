@@ -27,8 +27,8 @@ class GameBoard {
         }
     }
     
-    func claimColumn(col: Int, player: CantStopPlayer) {
-        claimedColumns[col-2] = player.id
+    func claimColumn(col: Int, player: Int) {
+        claimedColumns[col-2] = players[player].id
     }
     
     func getCurrentPlayer() -> Int {
@@ -36,6 +36,7 @@ class GameBoard {
     }
     
     func nextPlayer() {
+        markers = [Int: Int]()
         currentPlayer = (currentPlayer + 1) % numPlayers
     }
     
