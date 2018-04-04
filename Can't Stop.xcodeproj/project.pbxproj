@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		632CFE4220746E6100E336A2 /* Can_t_StopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632CFE4120746E6100E336A2 /* Can_t_StopUITests.swift */; };
 		637F4D9E202982F200FB4435 /* GameBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637F4D9D202982F200FB4435 /* GameBoard.swift */; };
 		637F4DA02029838C00FB4435 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637F4D9F2029838C00FB4435 /* Player.swift */; };
 		637F4DB320299BB400FB4435 /* GameBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637F4DB220299BB400FB4435 /* GameBoardTests.swift */; };
@@ -39,6 +40,13 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
+		632CFE4420746E6100E336A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63EB85111FF0C20200E12B66 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63EB85181FF0C20200E12B66;
+			remoteInfo = "Can't Stop";
+		};
 		637F4DAD20299B8C00FB4435 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 63EB85111FF0C20200E12B66 /* Project object */;
@@ -49,6 +57,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		632CFE3F20746E6100E336A2 /* Can't StopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Can't StopUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		632CFE4120746E6100E336A2 /* Can_t_StopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Can_t_StopUITests.swift; sourceTree = "<group>"; };
+		632CFE4320746E6100E336A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		637F4D9D202982F200FB4435 /* GameBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoard.swift; sourceTree = "<group>"; };
 		637F4D9F2029838C00FB4435 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		637F4DA120299A8A00FB4435 /* PlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
@@ -71,6 +82,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		632CFE3C20746E6100E336A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		637F4DA520299B8C00FB4435 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -88,6 +106,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		632CFE4020746E6100E336A2 /* Can't StopUITests */ = {
+			isa = PBXGroup;
+			children = (
+				632CFE4120746E6100E336A2 /* Can_t_StopUITests.swift */,
+				632CFE4320746E6100E336A2 /* Info.plist */,
+			);
+			path = "Can't StopUITests";
+			sourceTree = "<group>";
+		};
 		637F4DA920299B8C00FB4435 /* Can't StopTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +130,7 @@
 			children = (
 				63EB851B1FF0C20300E12B66 /* Can't Stop */,
 				637F4DA920299B8C00FB4435 /* Can't StopTests */,
+				632CFE4020746E6100E336A2 /* Can't StopUITests */,
 				63EB851A1FF0C20300E12B66 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,6 +140,7 @@
 			children = (
 				63EB85191FF0C20300E12B66 /* Can't Stop.app */,
 				637F4DA820299B8C00FB4435 /* Can't StopTests.xctest */,
+				632CFE3F20746E6100E336A2 /* Can't StopUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,6 +169,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		632CFE3E20746E6100E336A2 /* Can't StopUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 632CFE4820746E6100E336A2 /* Build configuration list for PBXNativeTarget "Can't StopUITests" */;
+			buildPhases = (
+				632CFE3B20746E6100E336A2 /* Sources */,
+				632CFE3C20746E6100E336A2 /* Frameworks */,
+				632CFE3D20746E6100E336A2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				632CFE4520746E6100E336A2 /* PBXTargetDependency */,
+			);
+			name = "Can't StopUITests";
+			productName = "Can't StopUITests";
+			productReference = 632CFE3F20746E6100E336A2 /* Can't StopUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		637F4DA720299B8C00FB4435 /* Can't StopTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 637F4DAF20299B8C00FB4435 /* Build configuration list for PBXNativeTarget "Can't StopTests" */;
@@ -182,10 +229,15 @@
 		63EB85111FF0C20200E12B66 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Sara McAllister";
 				TargetAttributes = {
+					632CFE3E20746E6100E336A2 = {
+						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 63EB85181FF0C20200E12B66;
+					};
 					637F4DA720299B8C00FB4435 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -212,11 +264,19 @@
 			targets = (
 				63EB85181FF0C20200E12B66 /* Can't Stop */,
 				637F4DA720299B8C00FB4435 /* Can't StopTests */,
+				632CFE3E20746E6100E336A2 /* Can't StopUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		632CFE3D20746E6100E336A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		637F4DA620299B8C00FB4435 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -240,6 +300,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		632CFE3B20746E6100E336A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				632CFE4220746E6100E336A2 /* Can_t_StopUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		637F4DA420299B8C00FB4435 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -268,6 +336,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		632CFE4520746E6100E336A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63EB85181FF0C20200E12B66 /* Can't Stop */;
+			targetProxy = 632CFE4420746E6100E336A2 /* PBXContainerItemProxy */;
+		};
 		637F4DAE20299B8C00FB4435 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 63EB85181FF0C20200E12B66 /* Can't Stop */;
@@ -295,6 +368,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		632CFE4620746E6100E336A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Can't StopUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Can-t-StopUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Can't Stop";
+			};
+			name = Debug;
+		};
+		632CFE4720746E6100E336A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Can't StopUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Can-t-StopUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Can't Stop";
+			};
+			name = Release;
+		};
 		637F4DB020299B8C00FB4435 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -463,6 +572,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		632CFE4820746E6100E336A2 /* Build configuration list for PBXNativeTarget "Can't StopUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				632CFE4620746E6100E336A2 /* Debug */,
+				632CFE4720746E6100E336A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		637F4DAF20299B8C00FB4435 /* Build configuration list for PBXNativeTarget "Can't StopTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
