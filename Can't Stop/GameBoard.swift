@@ -14,7 +14,7 @@ enum GameBoardError: Error {
 }
 
 class GameBoard {
-    var claimedColumns = Array(repeating: 0, count: 11)
+    var claimedColumns = Array(repeating: -1, count: 11)
     var players: [CantStopPlayer] = []
     var numPlayers: Int
     var currentPlayer = 0
@@ -31,6 +31,10 @@ class GameBoard {
         claimedColumns[col-2] = players[player].id
     }
     
+    func isColClaimed(col: Int) -> Bool {
+        return !(-1 == claimedColumns[col-2])
+    }
+    
     func getCurrentPlayer() -> Int {
         return currentPlayer
     }
@@ -38,6 +42,10 @@ class GameBoard {
     func nextPlayer() {
         markers = [Int: Int]()
         currentPlayer = (currentPlayer + 1) % numPlayers
+    }
+    
+    func getMarkers() -> [Int: Int]{
+        return markers
     }
     
     /**
@@ -51,17 +59,32 @@ class GameBoard {
         if (markers[diceSum] == nil) {
             if markers.count >= 3 {
                 return false
+            } else if (claimedColumns[diceSum - 2] != -1) {
+                return false
             } else {
                 markers[diceSum] = players[currentPlayer].currentTileLocation(column: diceSum) + 1
                 return true
             }
         }
-        markers[diceSum]! += 1
+        if (markers[diceSum]! < numRowsInGameColumn(col: diceSum - 2)) {
+            markers[diceSum]! += 1
+        }
         return true
     }
     
-    func saveMarkers() {
+    /**
+     Returns true if player wins
+    */
+    func saveMarkers() -> Bool {
         try? players[currentPlayer].updateFromMarkers(markers: markers)
+        let maxes = players[currentPlayer].getMaxCols()
+        for max in maxes {
+            claimColumn(col: max, player: currentPlayer)
+        }
+        if (maxes.count >= 3) {
+            return true
+        }
+        return false
     }
     
     func playerTileLocation(player: Int, column: Int) -> Int {

@@ -18,6 +18,7 @@ class BoardScene: SKScene {
     var playerLabel: SKLabelNode?
     var pieceLocations: SKNode?
     var selection = true
+    var isEndGame = false
     
     //Variables to keep track of dice position
     var diceCurrentlyShowing = [1,2,3,4]
@@ -27,7 +28,6 @@ class BoardScene: SKScene {
      Sets each die to a random number between 1 and 6 inclusive
      */
     private func rollDice() {
-        print("In roll Dice")
         
         let numberZero = arc4random_uniform(6) + 1
         let numberOne = arc4random_uniform(6) + 1
@@ -42,7 +42,6 @@ class BoardScene: SKScene {
     
     
     override func didMove(to view: SKView) {
-        print("Did move")
         
         // Fetch dice information from BoardScene.sks
         dice.append(self.childNode(withName: "dice1") as! SKSpriteNode)
@@ -53,7 +52,7 @@ class BoardScene: SKScene {
         // Set font and size of text labels
         playerLabel = (self.childNode(withName: "player_label") as! SKLabelNode)
         playerLabel!.text = "Player: \(gameBoard!.getCurrentPlayer() + 1)"
-        playerLabel!.color = idToColor(id: gameBoard!.getCurrentPlayer())
+        playerLabel!.fontColor = idToColor(id: gameBoard!.getCurrentPlayer())
         
         // Keep track of other necessary nodes
         rollButton = (self.childNode(withName: "rollButton") as! SKSpriteNode)
@@ -80,7 +79,6 @@ class BoardScene: SKScene {
      @param Die number to change
      */
     private func changeDieSelection(dieNumber: Int) {
-        print("Changing selection of die number \(dieNumber)")
         if (dice[dieNumber].color == .yellow){
             dice[dieNumber].color = .white
             if let index = selectedDice.index(of:dieNumber) {
@@ -93,15 +91,20 @@ class BoardScene: SKScene {
     }
     
     private func updateAllTiles() {
+        // Loop through every column
         for col in 0 ..< numberBoardColumns {
             let numRows = numRowsInGameColumn(col: col)
+            
+            // Find the location of every player
             var playerLocs = [Int](repeating: 0, count: gameBoard!.numPlayers)
             for player in 0 ..< gameBoard!.numPlayers {
-                playerLocs[player] = gameBoard!.playerTileLocation(player: player, column: col)
+                playerLocs[player] = gameBoard!.playerTileLocation(player: player, column: col+2)
             }
+            
+            let claimed = gameBoard!.isColClaimed(col: col + 2)
             for loc in 1 ..< (numRows + 1) {
                 let tileNode = pieceLocations!.children[col].children[loc - 1] as! SKSpriteNode
-                if (playerLocs.contains(loc)){
+                if (playerLocs.contains(loc) && (!claimed || loc == numRows)){
                     tileNode.color = idToColor(id: playerLocs.index(of: loc)!)
                 } else {
                     tileNode.color = UIColor.clear
@@ -110,15 +113,36 @@ class BoardScene: SKScene {
         }
     }
     
+    private func updateSingleTile(col: Int, loc: Int) {
+        let tileNode = pieceLocations!.children[col-2].children[loc - 1] as! SKSpriteNode
+        tileNode.color = UIColor.white
+    }
+    
+    private func endGame() {
+        playerLabel!.text = "Player \(gameBoard!.getCurrentPlayer() + 1) Wins!"
+        selection = false
+        chooseButton?.isHidden = false
+        rollButton?.isHidden = true
+        endTurnButton?.isHidden = true
+        
+        let chooseLabel = chooseButton!.children[0] as! SKLabelNode
+        chooseLabel.text = "Back to Menu"
+    }
+    
     private func nextPlayer(saveMarkers: Bool) {
-        print("Moving to next player")
-        if saveMarkers {gameBoard!.saveMarkers()}
+        if saveMarkers {
+            isEndGame = gameBoard!.saveMarkers()
+            if (isEndGame) {
+                updateAllTiles()
+                endGame()
+                return
+            }
+        }
         updateAllTiles()
         
         gameBoard!.nextPlayer()
         playerLabel!.text = "Player: \(gameBoard!.getCurrentPlayer() + 1)"
-        playerLabel!.color = idToColor(id: gameBoard!.getCurrentPlayer())
-        
+        playerLabel!.fontColor = idToColor(id: gameBoard!.getCurrentPlayer())
         
         for die in dice {
             die.color = .white
@@ -142,7 +166,6 @@ class BoardScene: SKScene {
         let sum2: Int = diceCurrentlyShowing.reduce(0, { x, y in x + y})  - sum1
         let return1 = gameBoard!.moveUpPiece(diceSum: sum1)
         let return2 = gameBoard!.moveUpPiece(diceSum: sum2)
-        print("sum1 is \(sum1) and sum2 is \(sum2)")
         selectedDice = [Int]()
         selection = false
         
@@ -154,6 +177,12 @@ class BoardScene: SKScene {
         // Move to next player if no marker can be moved up
         if !return1 && !return2 {
             nextPlayer(saveMarkers: false)
+        } else {
+            let markers = gameBoard!.markers
+            updateAllTiles()
+            for (col, loc) in markers {
+                updateSingleTile(col: col, loc: loc)
+            }
         }
     }
     
@@ -161,12 +190,7 @@ class BoardScene: SKScene {
         if let touch = touches.first {
             let pos = touch.location(in: self)
             let node = self.atPoint(pos)
-            
-            print("Number dice selected is \(selectedDice.count)")
-            print("Selection is \(selection)")
-            let allNodes = nodes(at: node.position)
-            print("Nodes at position are \(allNodes)")
-            
+                        
             if node == rollButton || node == rollButton?.children[0] && !selection {
                 for die in dice {
                     die.color = .white
@@ -185,9 +209,17 @@ class BoardScene: SKScene {
                 changeDieSelection(dieNumber: 2)
             } else if node == dice[3] && selection {
                 changeDieSelection(dieNumber: 3)
-            } else if node == chooseButton || node == chooseButton?.children[0] && selectedDice.count == 2 {
-                print("Clicked choose button")
-                self.clickedChooseButton()
+            } else if node == chooseButton || node == chooseButton?.children[0] && selectedDice.count == 2{
+                if !isEndGame {
+                    self.clickedChooseButton()
+                }
+                else {
+                    let transition:SKTransition = SKTransition.fade(withDuration: 1)
+                    let scene:SKScene = MenuScene(size: self.size)
+                    scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+                    scene.scaleMode = .aspectFill
+                    self.view?.presentScene(scene, transition: transition)
+                }
             } else if node == endTurnButton || node == endTurnButton?.children[0] && !selection {
                 nextPlayer(saveMarkers: true)
             }

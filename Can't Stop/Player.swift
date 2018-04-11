@@ -121,4 +121,17 @@ class CantStopPlayer: Player {
             tileLocations[loc-2] = number
         }
     }
+    
+    /**
+     - Returns: the all columns where the player has reached the maximum height
+    */
+    func getMaxCols() -> [Int] {
+        var cols = [Int]()
+        for num in 0 ..< numberBoardColumns {
+            if tileLocations[num] == numRowsInGameColumn(col: num) {
+                cols.append(num + 2)
+            }
+        }
+        return cols
+    }
 }
