@@ -15,6 +15,7 @@ class BoardScene: SKScene {
     var rollButton: SKSpriteNode?
     var chooseButton: SKSpriteNode?
     var endTurnButton: SKSpriteNode?
+    var menuButton: SKLabelNode?
     var playerLabel: SKLabelNode?
     var pieceLocations: SKNode?
     var selection = true
@@ -61,6 +62,7 @@ class BoardScene: SKScene {
         chooseButton!.children[0].isUserInteractionEnabled = false
         endTurnButton = (self.childNode(withName: "endTurnButton") as! SKSpriteNode)
         endTurnButton!.children[0].isUserInteractionEnabled = false
+        menuButton = (self.childNode(withName: "menuButton") as! SKLabelNode)
         
         rollButton!.isHidden = true
         endTurnButton!.isHidden = true
@@ -90,7 +92,7 @@ class BoardScene: SKScene {
         }
     }
     
-    private func updateAllTiles() {
+    private func updateAllTiles(startPlayer: Int = 0) {
         // Loop through every column
         for col in 0 ..< numberBoardColumns {
             let numRows = numRowsInGameColumn(col: col)
@@ -98,14 +100,14 @@ class BoardScene: SKScene {
             // Find the location of every player
             var playerLocs = [Int](repeating: 0, count: gameBoard!.numPlayers)
             for player in 0 ..< gameBoard!.numPlayers {
-                playerLocs[player] = gameBoard!.playerTileLocation(player: player, column: col+2)
+                playerLocs[player] = gameBoard!.playerTileLocation(player: (player + startPlayer) % gameBoard!.numPlayers, column: col+2)
             }
             
             let claimed = gameBoard!.isColClaimed(col: col + 2)
             for loc in 1 ..< (numRows + 1) {
                 let tileNode = pieceLocations!.children[col].children[loc - 1] as! SKSpriteNode
                 if (playerLocs.contains(loc) && (!claimed || loc == numRows)){
-                    tileNode.color = idToColor(id: playerLocs.index(of: loc)!)
+                    tileNode.color = idToColor(id: (playerLocs.index(of: loc)! + startPlayer) % gameBoard!.numPlayers)
                 } else {
                     tileNode.color = UIColor.clear
                 }
@@ -133,16 +135,17 @@ class BoardScene: SKScene {
         if saveMarkers {
             isEndGame = gameBoard!.saveMarkers()
             if (isEndGame) {
-                updateAllTiles()
+                updateAllTiles(startPlayer: gameBoard!.currentPlayer)
                 endGame()
                 return
             }
         }
-        updateAllTiles()
         
         gameBoard!.nextPlayer()
         playerLabel!.text = "Player: \(gameBoard!.getCurrentPlayer() + 1)"
         playerLabel!.fontColor = idToColor(id: gameBoard!.getCurrentPlayer())
+        updateAllTiles(startPlayer: gameBoard!.currentPlayer)
+
         
         for die in dice {
             die.color = .white
@@ -179,11 +182,19 @@ class BoardScene: SKScene {
             nextPlayer(saveMarkers: false)
         } else {
             let markers = gameBoard!.markers
-            updateAllTiles()
+            updateAllTiles(startPlayer: gameBoard!.currentPlayer)
             for (col, loc) in markers {
                 updateSingleTile(col: col, loc: loc)
             }
         }
+    }
+    
+    private func backToMenu() {
+        let transition:SKTransition = SKTransition.fade(withDuration: 1)
+        let scene:SKScene = MenuScene(size: self.size)
+        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        scene.scaleMode = .aspectFill
+        self.view?.presentScene(scene, transition: transition)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -214,14 +225,12 @@ class BoardScene: SKScene {
                     self.clickedChooseButton()
                 }
                 else {
-                    let transition:SKTransition = SKTransition.fade(withDuration: 1)
-                    let scene:SKScene = MenuScene(size: self.size)
-                    scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-                    scene.scaleMode = .aspectFill
-                    self.view?.presentScene(scene, transition: transition)
+                    self.backToMenu()
                 }
             } else if node == endTurnButton || node == endTurnButton?.children[0] && !selection {
                 nextPlayer(saveMarkers: true)
+            } else if node == menuButton {
+                self.backToMenu()
             }
         }
     }
