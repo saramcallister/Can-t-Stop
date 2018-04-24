@@ -78,7 +78,7 @@ class GameBoardTests: XCTestCase {
         XCTAssertTrue(twoPlayers!.moveUpPiece(diceSum: 7))
         XCTAssertTrue(twoPlayers!.moveUpPiece(diceSum: 7))
         XCTAssertFalse(twoPlayers!.moveUpPiece(diceSum: 2))
-        twoPlayers?.saveMarkers()
+        XCTAssertFalse(twoPlayers!.saveMarkers())
         
         let tileLocations = twoPlayers!.players[0].tileLocations
         XCTAssertTrue(tileLocations[0] == 0)
